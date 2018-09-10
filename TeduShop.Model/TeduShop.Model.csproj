@@ -49,8 +49,6 @@
   <ItemGroup>
     <Compile Include="Abstract\AuditTable.cs" />
     <Compile Include="Abstract\IAuditTable.cs" />
-    <Compile Include="Model\ApplicationGroup.cs" />
-    <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\ContactDetail.cs" />
     <Compile Include="Model\Error.cs" />
     <Compile Include="Model\FeedBack.cs" />
@@ -58,6 +56,7 @@
     <Compile Include="Model\Menu.cs" />
     <Compile Include="Model\MenuGroup.cs" />
     <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderDetail.cs" />
     <Compile Include="Model\Page.cs" />
     <Compile Include="Model\Post.cs" />
     <Compile Include="Model\PostCategory.cs" />
