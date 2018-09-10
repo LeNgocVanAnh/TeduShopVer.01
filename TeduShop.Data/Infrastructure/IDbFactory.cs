@@ -8,7 +8,7 @@ namespace TeduShop.Data.Infrastructure
 {
     public interface IDbFactory : IDisposable
     {
-        // giao tiếp khởi tạo các entities
+        // giao tiếp khởi tạo các entities để init ra dbcontext
         TeduShopDbContext Init();
     }
 }

@@ -8,14 +8,16 @@ using TeduShop.Model.Model;
 
 namespace TeduShop.Data
 {
+    // kế thừa từ dbcontext
     public class TeduShopDbContext : DbContext
     {
+        //khởi tạo 1 cái connection truyền vào
         public TeduShopDbContext() : base("TeduShopConnection")
         {
             this.Configuration.LazyLoadingEnabled = false;
 
         }
-
+        // cấu hình thuộc tính db tương ứng với các bảng trong database
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
         public DbSet<MenuGroup> MenuGroups { set; get; }
@@ -36,9 +38,7 @@ namespace TeduShop.Data
         public DbSet<Error> Errors { set; get; }
         public DbSet<FeedBack> FeedBacks { set; get; }
         public DbSet<ContactDetail> ContactDetails { set; get; }
-        public DbSet<ApplicationGroup> ApplicationGroups { set; get; }
-        public DbSet<ApplicationUser> ApplicationUsers { set; get; }
-
+        // ghi đè
         protected override void OnModelCreating(DbModelBuilder Builder)
         {
             

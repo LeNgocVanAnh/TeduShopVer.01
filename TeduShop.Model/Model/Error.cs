@@ -10,16 +10,14 @@ using TeduShop.Model.Abstract;
 namespace TeduShop.Model.Model
 {
     [Table("Errors")]
-    public class Error: AuditTable
+    public class Error
     {
         [Key]
         public int ID { set; get; }
 
         public string Message { set; get; }
 
-
-        public string StarckTrace { set; get; }
-
+        public string StackTrace { set; get; }
 
         public DateTime CreatedDate { set; get; }
     }

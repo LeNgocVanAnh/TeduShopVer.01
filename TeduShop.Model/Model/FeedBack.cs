@@ -25,7 +25,7 @@ namespace TeduShop.Model.Model
         [MaxLength(250)]
         public string Message { set; get; }
 
-        [MaxLength(250)]
+      
         public DateTime CreatedDate { set; get; }
 
 

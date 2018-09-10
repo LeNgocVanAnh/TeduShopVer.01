@@ -10,13 +10,15 @@ namespace TeduShop.Data.Infrastructure
     // triển khai các định nghĩa trong giao diện
     // tự tắt đối tượng khi ko dùng đến
     // là 1 lớp object triển khai toàn bộ để làm nhiệm vụ dùng chung cho các class
-    public abstract class RepositoryBase<T> where T : class
+    // kế thừa irepository có nghĩa là nó phụ thuộc vào repository có bao nhiêu phương thức 
+    // thì nó cũng có bấy nhiêu phương thức
+    public abstract class RepositoryBase<T>: IRepository<T> where T : class
     {
+        // khai báo 2 biến 
         #region Properties
-        // khai báo 2 biến
         private TeduShopDbContext dataContext;
         private readonly IDbSet<T> dbSet;
-        //khởi tạo 2 biến
+
         protected IDbFactory DbFactory
         {
             get;
@@ -25,13 +27,9 @@ namespace TeduShop.Data.Infrastructure
 
         protected TeduShopDbContext DbContext
         {
-            get
-            {
-                return dataContext ?? (dataContext = DbFactory.Init());
-            }
+            get { return dataContext ?? (dataContext = DbFactory.Init()); }
         }
-
-        #endregion Properties
+        #endregion
 
         protected RepositoryBase(IDbFactory dbFactory)
         {
@@ -39,11 +37,10 @@ namespace TeduShop.Data.Infrastructure
             dbSet = DbContext.Set<T>();
         }
 
-        #region Implement
-
-        public virtual void Add(T entity)
+        #region Implementation
+        public virtual T Add(T entity)
         {
-            dbSet.Add(entity);
+            return dbSet.Add(entity);
         }
 
         public virtual void Update(T entity)
@@ -52,18 +49,20 @@ namespace TeduShop.Data.Infrastructure
             dataContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual void Delete(T entity)
+        public virtual T Delete(T entity)
         {
-            dbSet.Remove(entity);
+            return dbSet.Remove(entity);
         }
-
+        public virtual T Delete(int id)
+        {
+            var entity = dbSet.Find(id);
+            return dbSet.Remove(entity);
+        }
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)
         {
             IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
             foreach (T obj in objects)
-            {
                 dbSet.Remove(obj);
-            }
         }
 
         public virtual T GetSingleById(int id)
@@ -76,13 +75,15 @@ namespace TeduShop.Data.Infrastructure
             return dbSet.Where(where).ToList();
         }
 
+
         public virtual int Count(Expression<Func<T, bool>> where)
         {
             return dbSet.Count(where);
         }
 
-        public IQueryable<T> GetAll(string[] includes = null)
+        public IEnumerable<T> GetAll(string[] includes = null)
         {
+            //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
             {
                 var query = dataContext.Set<T>().Include(includes.First());
@@ -90,6 +91,7 @@ namespace TeduShop.Data.Infrastructure
                     query = query.Include(include);
                 return query.AsQueryable();
             }
+
             return dataContext.Set<T>().AsQueryable();
         }
 
@@ -119,6 +121,8 @@ namespace TeduShop.Data.Infrastructure
             return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
 
+
+        // dùng để phân trang
         public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
         {
             int skipCount = index * size;
@@ -146,7 +150,6 @@ namespace TeduShop.Data.Infrastructure
         {
             return dataContext.Set<T>().Count<T>(predicate) > 0;
         }
-
-        #endregion Implement
+        #endregion
     }
 }

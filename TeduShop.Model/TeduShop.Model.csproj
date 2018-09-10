@@ -49,8 +49,6 @@
   <ItemGroup>
     <Compile Include="Abstract\AuditTable.cs" />
     <Compile Include="Abstract\IAuditTable.cs" />
-    <Compile Include="Model\ApplicationGroup.cs" />
-    <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\ContactDetail.cs" />
     <Compile Include="Model\Error.cs" />
     <Compile Include="Model\FeedBack.cs" />
