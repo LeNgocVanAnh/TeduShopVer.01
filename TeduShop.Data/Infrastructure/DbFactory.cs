@@ -7,6 +7,7 @@
     {
         //khai báo 1 biến
         private TeduShopDbContext dbContext;
+
         //phương thức init khởi tạo 1 đối tượng cho dbContext
         public TeduShopDbContext Init()
         {
