@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TeduShop.Data.Infrastructure
 {
-    // thực thi các class đã định nghĩ trong IRepository
-    // triển khai các định nghĩa trong giao diện
-    // tự tắt đối tượng khi ko dùng đến
-    // là 1 lớp object triển khai toàn bộ để làm nhiệm vụ dùng chung cho các class
-    // kế thừa irepository có nghĩa là nó phụ thuộc vào repository có bao nhiêu phương thức 
-    // thì nó cũng có bấy nhiêu phương thức
-    public abstract class RepositoryBase<T>: IRepository<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
-        // khai báo 2 biến 
+        // thực thi các class đã định nghĩ trong IRepository
+        // triển khai các định nghĩa trong giao diện
+        // tự tắt đối tượng khi ko dùng đến
+        // là 1 lớp object triển khai toàn bộ để làm nhiệm vụ dùng chung cho các class
+        // kế thừa irepository có nghĩa là nó phụ thuộc vào repository có bao nhiêu phương thức 
+        // thì nó cũng có bấy nhiêu phương thức
         #region Properties
         private TeduShopDbContext dataContext;
         private readonly IDbSet<T> dbSet;
@@ -121,8 +122,6 @@ namespace TeduShop.Data.Infrastructure
             return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
 
-
-        // dùng để phân trang
         public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
         {
             int skipCount = index * size;

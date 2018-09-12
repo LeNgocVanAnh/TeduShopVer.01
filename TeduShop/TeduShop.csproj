@@ -214,8 +214,16 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="API\" />
+    <Folder Include="App\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Insfrastructure\" />
+    <Folder Include="Libs\" />
+    <Folder Include="Mappings\" />
     <Folder Include="Models\" />
+    <Folder Include="Resources\" />
+    <Folder Include="UploadFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
