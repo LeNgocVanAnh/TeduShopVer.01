@@ -1,5 +1,10 @@
-﻿using TeduShop.Data.Infrastructure;
-using TeduShop.Model.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TeduShop.Data.Infrastructure;
+using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repositories
 {
@@ -9,7 +14,7 @@ namespace TeduShop.Data.Repositories
 
     public class MenuGroupRepository : RepositoryBase<MenuGroup>, IMenuGroupRepository
     {
-        public MenuGroupRepository(DbFactory dbFactory) : base(dbFactory)
+        public MenuGroupRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }
