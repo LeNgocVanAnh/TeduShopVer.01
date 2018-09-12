@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TeduShop.Data.Infrastructure
 {
-    // tự động hủy
     public class Disposable : IDisposable
     {
         private bool isDisposed;
+
         ~Disposable()
         {
             Dispose(false);
@@ -19,21 +19,20 @@ namespace TeduShop.Data.Infrastructure
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-            // thu hoạch bộ nhớ
         }
-
-        private void Dispose (bool disposing)
+        private void Dispose(bool disposing)
         {
-            if(!isDisposed && disposing)
+            if (!isDisposed && disposing)
             {
                 DisposeCore();
             }
+
             isDisposed = true;
         }
 
+        // Ovveride this to dispose custom objects
         protected virtual void DisposeCore()
         {
-
         }
     }
 }

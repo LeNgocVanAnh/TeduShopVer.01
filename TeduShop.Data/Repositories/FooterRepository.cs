@@ -1,5 +1,5 @@
 ﻿using TeduShop.Data.Infrastructure;
-using TeduShop.Model.Model;
+using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repositories
 {

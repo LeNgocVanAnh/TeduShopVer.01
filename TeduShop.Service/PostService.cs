@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using TeduShop.Data.Infrastructure;
 using TeduShop.Data.Repositories;
+using TeduShop.Model.Models;
 using System.Linq;
-using TeduShop.Model.Model;
 
 namespace TeduShop.Service
 {

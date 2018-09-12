@@ -1,5 +1,5 @@
 ﻿using TeduShop.Data.Infrastructure;
-using TeduShop.Model.Model;
+using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repositories
 {
@@ -9,7 +9,7 @@ namespace TeduShop.Data.Repositories
 
     public class ProductTagRepository : RepositoryBase<ProductTag>, IProductTagRepository
     {
-        public ProductTagRepository(DbFactory dbFactory) : base(dbFactory)
+        public ProductTagRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }

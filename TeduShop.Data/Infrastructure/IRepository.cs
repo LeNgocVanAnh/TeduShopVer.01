@@ -5,8 +5,6 @@ using System.Linq.Expressions;
 
 namespace TeduShop.Data.Infrastructure
 {
-    // định nghĩa các class generic sử dụng trong toàn bộ dự án
-    // đại diện cho 1 kiểu bất kì
     public interface IRepository<T> where T : class
     {
         // Marks an entity as new

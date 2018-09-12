@@ -1,15 +1,20 @@
-﻿using TeduShop.Data.Infrastructure;
-using TeduShop.Model.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TeduShop.Data.Infrastructure;
+using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repositories
 {
-    public interface IFeedbackRepository : IRepository<FeedBack>
+    public interface IFeedbackRepository : IRepository<Feedback>
     {
-    }
 
-    public class FeedbackRepository : RepositoryBase<FeedBack>, IFeedbackRepository
+    }
+    public class FeedbackRepository : RepositoryBase<Feedback>, IFeedbackRepository
     {
-        public FeedbackRepository(DbFactory dbFactory) : base(dbFactory)
+        public FeedbackRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }

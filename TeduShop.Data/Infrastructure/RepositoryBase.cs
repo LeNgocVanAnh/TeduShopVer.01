@@ -10,12 +10,6 @@ namespace TeduShop.Data.Infrastructure
 {
     public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
-        // thực thi các class đã định nghĩ trong IRepository
-        // triển khai các định nghĩa trong giao diện
-        // tự tắt đối tượng khi ko dùng đến
-        // là 1 lớp object triển khai toàn bộ để làm nhiệm vụ dùng chung cho các class
-        // kế thừa irepository có nghĩa là nó phụ thuộc vào repository có bao nhiêu phương thức 
-        // thì nó cũng có bấy nhiêu phương thức
         #region Properties
         private TeduShopDbContext dataContext;
         private readonly IDbSet<T> dbSet;

@@ -1,5 +1,5 @@
 ﻿using TeduShop.Data.Infrastructure;
-using TeduShop.Model.Model;
+using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repositories
 {
@@ -7,9 +7,9 @@ namespace TeduShop.Data.Repositories
     {
     }
 
-    public class ErrorRepository : RepositoryBase<Error>
+    public class ErrorRepository : RepositoryBase<Error>, IErrorRepository
     {
-        public ErrorRepository(DbFactory dbFactory) : base(dbFactory)
+        public ErrorRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }
